@@ -1,27 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState, useEffect } from 'react';
-import {getCurrencyList} from './services/CurrencyListService';
-import{CurrencyList} from './components/CurrencyList'
+import { useState } from 'react';
+
+import{CurrencyList} from './components/CurrencyList/CurrencyList'
 
 function App() {
-  const [currencyList, setCurrencyList] = useState([])
 
-  useEffect(() => {
-    getCurrencyList()
-    .then((response) => response.currency_list)
-    .then((list) =>
-      Object.entries(list).map((currency)=>({ ...currency, selected: false })))
-    .then(setCurrencyList)
-    
-  }, [])
+  const [selectedCurrency, setSelectedCurrency] = useState([]);
+
+ // const [result, setResult] = useState("")
+
+
+
+  /*const onChangeResult = (result)=>{
+    setResult(result);
+  }*/
 
   return (
     <div className="App"> 
       <div className="RowContainer">
 
         <div className="ColumnContainer">
-        <CurrencyList currencyList={currencyList}></CurrencyList>
+        <CurrencyList selectedCurrency={selectedCurrency} setSelectedCurrency= {setSelectedCurrency}></CurrencyList>
+        
         </div>
       </div>
     

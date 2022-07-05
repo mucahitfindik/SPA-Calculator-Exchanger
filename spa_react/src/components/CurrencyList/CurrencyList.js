@@ -1,8 +1,18 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
+import {getCurrencyList} from '../../services/CurrencyListService';
 import TableRow from '@material-ui/core/TableRow';
 import './CurrencyList.css'
-export const CurrencyList = ({currencyList}) => {
-    const [selectedCurrency, setSelectedCurrency] = useState([]);
+export const CurrencyList = ({selectedCurrency, setSelectedCurrency}) => {
+    const [currencyList, setCurrencyList] = useState([])
+    useEffect(() => {
+        getCurrencyList()
+        .then((response) => response.currency_list)
+        .then((list) =>
+          Object.entries(list).map((currency)=>({ ...currency, selected: false })))
+        .then(setCurrencyList)
+        
+      }, [])
+
     console.log(currencyList);
 
     if (currencyList.length === 0) return null
@@ -40,6 +50,7 @@ export const CurrencyList = ({currencyList}) => {
             const updateSelectedCurrency = [...selectedCurrency, item];
             setSelectedCurrency(updateSelectedCurrency);
         }
+        console.log(selectedCurrency);
       };
     return(
         <div className="CurrencyList"> 
