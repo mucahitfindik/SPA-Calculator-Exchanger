@@ -2,12 +2,13 @@ import './App.css';
 import { useState } from 'react';
 
 import{CurrencyList} from './components/CurrencyList/CurrencyList'
-
+import{FormulaForm} from './components/FormulaForm/FormulaForm'
 function App() {
 
   const [selectedCurrency, setSelectedCurrency] = useState([]);
-
- // const [result, setResult] = useState("")
+  const [currencyList, setCurrencyList] = useState([])
+  const [result, setResult] = useState("")
+  const [currentCurrency, setCurrentCurrency]=useState("")
 
 
 
@@ -20,7 +21,8 @@ function App() {
       <div className="RowContainer">
 
         <div className="ColumnContainer">
-        <CurrencyList selectedCurrency={selectedCurrency} setSelectedCurrency= {setSelectedCurrency}></CurrencyList>
+        <FormulaForm  result={result} setResult= {setResult} currentCurrency={currentCurrency} setCurrentCurrency= {setCurrentCurrency} currencyList= {currencyList} ></FormulaForm>
+        <CurrencyList selectedCurrency={selectedCurrency} setSelectedCurrency= {setSelectedCurrency} currencyList= {currencyList} setCurrencyList= {setCurrencyList}></CurrencyList>
         
         </div>
       </div>

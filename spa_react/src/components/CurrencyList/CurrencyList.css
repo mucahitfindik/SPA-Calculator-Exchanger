@@ -1,9 +1,10 @@
 .CurrencyList{
-    width: 400px;
+    width: 500px;
     height: 400px;
     float: right;
   }
 .container{
+    width: 500px;
     height: 300px;
     padding: 0 10px 10px 30px;
     overflow: scroll;
