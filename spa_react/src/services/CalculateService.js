@@ -1,13 +1,14 @@
-export async function getResultCalculation(expression) {
+export async function getResultCalculation(exp) {
 
     try{
         const response = await fetch('/calculate',{
-            method: 'GET',
+            method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({expression: expression})
+            body: JSON.stringify(exp)
         });
         return await response.json();
     }catch(error) {
+        console.log(error);
         return [];
     }
     

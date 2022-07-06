@@ -4,21 +4,9 @@
   align-items: center;
   }
 .ColumnContainer{
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  }
-  .CurrencyList{
-    width: 400px;
-    height: 400px;
-    float: right;
-  }
-  .Formula{
-    width: 400px;
-    height: 400px;
-    float: left;
-  }
-  .SelectedCurrencyList{
-    width: 400px;
-    height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px-5px;
   }
