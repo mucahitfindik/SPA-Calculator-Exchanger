@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {getCurrencyList} from '../../services/CurrencyListService';
 import './CurrencyList.css'
-export const CurrencyList = ({selectedCurrency, setSelectedCurrency, currencyList, setCurrencyList}) => {
+export const CurrencyList = ({selectedCurrency, setSelectedCurrency, currencyList, setCurrencyList, exchange}) => {
 
     useEffect(() => {
         getCurrencyList()
@@ -40,13 +40,13 @@ export const CurrencyList = ({selectedCurrency, setSelectedCurrency, currencyLis
             item.selected = false;
             setSelectedCurrency(current =>
                 current.filter(currency => {
-                  return currency.value !== item.value;
+                  return currency !== item.label;
                 }),
               );
         }
         else{
             item.selected = true;
-            const updateSelectedCurrency = [...selectedCurrency, item];
+            const updateSelectedCurrency = [...selectedCurrency, item.label];
             setSelectedCurrency(updateSelectedCurrency);
         }
         console.log(selectedCurrency);
@@ -67,6 +67,9 @@ export const CurrencyList = ({selectedCurrency, setSelectedCurrency, currencyLis
                         {currencyTable}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <button type="button" onClick={exchange} className="btn btn-danger">Exchange</button>
             </div>
         </div>
     )
