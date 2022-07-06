@@ -56,7 +56,7 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
                 pattern="[0-9 \.\+\-\*\/\(\)]*" 
                 value={expression.expression} 
                 onChange={(e) =>setExpression((expression) => (e.target.validity.valid ? {expression:e.target.value} : expression))} 
-                size="50"/> 
+                size="40"/> 
                 <p id = "result">={result !== ""&& result}</p>
                 <input type="submit" value="Calculate" />
             </form>
