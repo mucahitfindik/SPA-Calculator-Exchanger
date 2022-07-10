@@ -18,10 +18,7 @@ function App() {
     getResultExchange(result, selectedCurrency, currentCurrency.label, new Date(Date.now()).toISOString().split('T')[0])
     .then(setBoardResult)
   }
-
-  /*const onChangeResult = (result)=>{
-    setResult(result);
-  }*/
+  // TODO: handle the error of response of the exchange request that sends to the backend
 
   return (
     <div className="App"> 

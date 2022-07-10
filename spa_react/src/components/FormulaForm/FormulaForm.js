@@ -9,6 +9,7 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
     const [formulaHistoryList, setFormulaHistoryList] = useState([]);
     const [expression, setExpression] = useState({expression:""});
     const [suggestions, setSuggestions] = useState([]);
+    const [errorStatusText, setErrorStatusText] = useState("");
     useEffect(() => {
         const fetchHistoryFormula = async()=>{
           const response = await getHistoryFormula();
@@ -17,22 +18,22 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
         fetchHistoryFormula();   
       }, [])
     const handleSubmit = (event) =>{
-        getResultCalculation(expression)
-        .then((response)=> response.result)
-        .then(setResult);
-        event.preventDefault();
+      getResultCalculation(expression)
+      .then(handleResponse)
+      event.preventDefault();
+    }
+    const handleResponse =(response)=>{
+      if(response.error){
+        setErrorStatusText(response.error);
+      }else{
+        setErrorStatusText("");
+        setResult(response.result);
       }
-
-      const handleSelect = (data) =>{
-        setCurrentCurrency(data);
-       
-      };
-   /* const handleChange = (event) => {
-        setExpression((v) => {
-            console.log(v)
-            return event.target.validity.valid ? {expression:event.target.value} : v
-    })
-      };*/
+    }
+    const handleSelect = (data) =>{
+      setCurrentCurrency(data);
+      
+    };
     const getSuggestions = (value) => {
       return formulaHistoryList.filter(exp =>
         exp.expression.includes(value.trim())
@@ -47,12 +48,10 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
       setSuggestions(getSuggestions(value))
     }
     const getSuggestionValue =(suggestion) =>{
+      setErrorStatusText("");
       setResult(suggestion.result);
       return suggestion.expression
     }
-    const onChange = (event, { newValue, method }) => {
-      setExpression({expression:newValue});
-    };
     
     return(
       
@@ -88,8 +87,18 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
                 }
               }}
               highlightFirstSuggestion={true}
-            />
-                <p id = "result">={result !== ""&& result}</p>
+            /><p id = "result">
+              {errorStatusText==="" 
+              ? <>
+              {result===""
+              ?""
+              :result}
+              </>
+              :
+              errorStatusText}
+
+            </p>
+            
                 <input type="submit" value="Calculate" />
             </form>
             </div>
