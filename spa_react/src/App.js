@@ -16,7 +16,7 @@ function App() {
 
   const exchange = ()=>{
     getResultExchange(result, selectedCurrency, currentCurrency.label, new Date(Date.now()).toISOString().split('T')[0])
-    .then(setBoardResult).then(()=>console.log(boardResult))
+    .then(setBoardResult)
   }
 
   /*const onChangeResult = (result)=>{

@@ -12,8 +12,6 @@ export const CurrencyList = ({selectedCurrency, setSelectedCurrency, currencyLis
         
       }, [])
 
-    console.log(currencyList);
-
     if (currencyList.length === 0) return null
 
     const CurrencyRow = (currency, index) => {
@@ -49,7 +47,6 @@ export const CurrencyList = ({selectedCurrency, setSelectedCurrency, currencyLis
             const updateSelectedCurrency = [...selectedCurrency, item.label];
             setSelectedCurrency(updateSelectedCurrency);
         }
-        console.log(selectedCurrency);
       };
     return(
         <div className="CurrencyList"> 

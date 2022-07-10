@@ -2,7 +2,6 @@
 export const DisplayExchangeResult = ({boardResult}) => {
     
     if (boardResult.length === 0) return null
-    console.log(boardResult);
     const ExchchangeResultRow = (result, index) => {
         return(
               <tr key={index}>
