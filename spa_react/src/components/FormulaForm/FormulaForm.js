@@ -11,12 +11,12 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
     const [suggestions, setSuggestions] = useState([]);
     const [errorStatusText, setErrorStatusText] = useState("");
     useEffect(() => {
-        const fetchHistoryFormula = async()=>{
-          const response = await getHistoryFormula();
-          setFormulaHistoryList(response.formula_history)
-        }
         fetchHistoryFormula();   
       }, [])
+    const fetchHistoryFormula = async()=>{
+      const response = await getHistoryFormula();
+      setFormulaHistoryList(response.formula_history)
+    }
     const handleSubmit = (event) =>{
       getResultCalculation(expression)
       .then(handleResponse)
@@ -28,6 +28,7 @@ export const FormulaForm = ({result, setResult, currentCurrency, setCurrentCurre
       }else{
         setErrorStatusText("");
         setResult(response.result);
+        fetchHistoryFormula();
       }
     }
     const handleSelect = (data) =>{
